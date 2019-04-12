@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: TravelExplerts
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: 803395
+Implementation-Vendor-Id: com.travelexperts
+Build-Jdk: 1.8.0_201
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/TravelExplerts
+Created-By: Maven Integration for Eclipse
+
