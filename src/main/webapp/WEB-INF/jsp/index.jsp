@@ -6,30 +6,11 @@
 		<title>Travel Experts</title>
 		<meta charset="utf-8">
 		<meta name="format-detection" content="telephone=no" />
-		<link rel="icon" href="images/favicon.ico">
-		<link rel="shortcut icon" href="images/favicon.ico" />
-		<link rel="stylesheet" href="booking/css/booking.css">
-		<link rel="stylesheet" href="css/camera.css">
-		<link rel="stylesheet" href="css/owl.carousel.css">
-		<link rel="stylesheet" href="css/style.css">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+		
+		<%@ include file="parts/links.jsp" %>
 		<link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
-		<script src="js/jquery.js"></script>
-		<script src="js/jquery-migrate-1.2.1.js"></script>
-		<script src="js/script.js"></script>
-		<script src="js/superfish.js"></script>
-		<script src="js/jquery.ui.totop.js"></script>
-		<script src="js/jquery.equalheights.js"></script>
-		<script src="js/jquery.mobilemenu.js"></script>
-		<script src="js/jquery.easing.1.3.js"></script>
-		<script src="js/owl.carousel.js"></script>
-		<script src="js/camera.js"></script>
-		<script src="js/header-footer.js"></script>
-		<!--[if (gt IE 9)|!(IE)]><!-->
-		<script src="js/jquery.mobile.customized.min.js"></script>
-		<!--<![endif]-->
-		<script src="booking/js/booking.js"></script>
+
+		<%@ include file="parts/scripts.jsp" %>
 		<script>
 			$(document).ready(function(){
 			jQuery('#camera_wrap').camera({
@@ -57,47 +38,8 @@
 			});
 		</script>
 </head>
-<body>
-	<body class="page1" id="top" onload="includeHTML()">
-<!--==============================header=================================-->
-		<div class="very-top-line">
-			<div class="container">
-				<i class="fas fa-phone-square phone-icon ml-4"></i>1-800-555-3367
-				<div class="float-right">
-					<a class="login-register-icon mr-3" href="#"><i class="fas fa-sign-in-alt header-icon"></i>LOGIN</a>
-					<a class="login-register-icon ml-3" href="#"><i class="fas fa-user header-icon"></i>Register Now</a>
-			</div>
-		</div>
-		</div>
-		<nav class="navbar navbar-expand-md">
-			<div class="container">
-				<a class="navbar-brand" href="#"><img src="images/travel-logo.png" alt="Your Happy Family"></a>
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="navbarsExampleDefault">
-					<ul class="navbar-nav ml-auto">
-						<li class="nav-item active">
-							<a class="nav-link" href="#packagesTop">Destination</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#bookingTop">Book Now</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#">About</a>
-						</li>
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle ml-0" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Hello, User</a>
-							<div class="dropdown-menu" aria-labelledby="dropdown01">
-								<a class="dropdown-item" href="#">Action</a>
-								<a class="dropdown-item" href="#">Another action</a>
-								<a class="dropdown-item" href="#">Something else here</a>
-							</div>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</nav>
+  <body class="page1" id="top" onload="includeHTML()">
+	<%@ include file="parts/header.jsp" %>
 		<div class="slider_wrapper">
 			<div id="camera_wrap" class="">
 				<div data-src="images/slide.jpg">
@@ -275,33 +217,7 @@
 				</div>
 			</div>
 		</div>
-<!--==============================footer=================================-->
-	<footer>
-		<div class="container_12">
-			<div class="grid_12">
-				<div class="socials">
-					<a href="#" class="fab fa-facebook"></a>
-					<a href="#" class="fab fa-twitter"></a>
-					<a href="#" class="fab fa-google-plus"></a>
-				</div>
-				<div class="copy">
-					2019 Travel Experts || Website Template Designed by <a href="http://www.templatemonster.com/" rel="nofollow">TemplateMonster.com</a>
-				</div>
-			</div>
-		</div>
-	</footer>
-		<script src="js/header-footer.js"></script>
-		<script>
-			$(function (){
-				$('#bookingForm').bookingForm({
-					ownerEmail: '#'
-				});
-			})
-			$(function() {
-				$('#bookingForm input, #bookingForm textarea').placeholder();
-			});
-		</script>
-	</body>
+	<%@ include file="parts/footer.jsp" %> 
 
 </body>
 </html>

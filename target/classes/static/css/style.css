@@ -906,7 +906,7 @@ header h1 a {
 	height: 2rem;
 	padding-top: 2px !important;
 	padding-bottom: 2px !important;
-	background-color:#4286f4;
+	background-color: #6da2f8;   /*#4286f4;*/
 	color:#ffffff;
 	vertical-align: middle;
 }
@@ -939,7 +939,8 @@ header h1 a {
 }
 
 footer{
-	background-color: #4286f4;
+	background-color: #6da2f8;
+	/*background-color: #4286f4; */
 	color: #ffffff;
 }
 

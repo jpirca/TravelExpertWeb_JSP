@@ -18,10 +18,10 @@ public class TravelExpertsConfig extends WebSecurityConfigurerAdapter {
         .antMatchers("/").permitAll()
     //    .antMatchers(HttpMethod.POST,"/newuser").permitAll()
     //    .antMatchers(HttpMethod.POST, "/login").permitAll()
-    //    .antMatchers(HttpMethod.POST,"/newuser/*").permitAll() 
+        .antMatchers(HttpMethod.POST,"/users/*").permitAll() 
         .antMatchers(HttpMethod.GET,"/packages/*").permitAll()
         .antMatchers(HttpMethod.GET,"/bookings/*").permitAll()
-        .antMatchers(HttpMethod.GET,"/customers/all").permitAll()
+        .antMatchers(HttpMethod.GET,"/customers/*").permitAll()
         .anyRequest().authenticated();
     }
   /*  @Override

@@ -108,6 +108,7 @@ public class CustomerService {
 	// insert new customer
 	public int insertCustomer(Customer cust) {
 
+		int lastInserted = 0;
 		int rowsInserted = 0;
 
 		try {
@@ -120,7 +121,7 @@ public class CustomerService {
 					"VALUES (?,?,?,?,?,?,?,?,?,?) ";
 			
 			// Create statement and pass parameters 
-	        PreparedStatement st = conn.prepareStatement(query);
+	        PreparedStatement st = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 	        st.setString(1,cust.getCustFirstName());
 	        st.setString(2,cust.getCustLastName());
 	        st.setString(3,cust.getCustAddress());
@@ -132,21 +133,25 @@ public class CustomerService {
 	        st.setString(9,cust.getCustBusPhone());
 	        st.setString(10,cust.getCustEmail());
 	
-	        // execute the query, and get a java resultset
-	        //ResultSet rs = st.executeQuery();
+	        // Insert row and get a number of rows inserted
 	        rowsInserted = st.executeUpdate();
-	        //System.out.println("Rows inserted - "+rowsInserted);
+	        
+	        // get ID of the last inserted element 
+	        ResultSet rs = st.getGeneratedKeys();
+	        if (rs.next()){
+	        	lastInserted = rs.getInt(1); //rs.getInt("CustomerId");
+	        }
 
 	        st.close();
         }catch (Exception e) {
 	        System.err.println("Got an exception! ");
 	        System.err.println(e.getMessage());
 	    }
-		
-		return rowsInserted;
+			
+		return lastInserted;
 	}
 
-	// insert new customer
+	// update customer
 	public int updateCustomer(Customer cust) {
 		
 		int rowsUpdated = 0;
@@ -159,17 +164,6 @@ public class CustomerService {
 					"SET `CustFirstName`=?, `CustLastName`=?, `CustAddress`=?, `CustCity`=?, `CustProv`=?, "
 					+ "`CustPostal`=?,`CustCountry`=?, `CustHomePhone`=?, `CustBusPhone`=?, `CustEmail`=? " + 
 					"WHERE `CustomerId`=? ";
-			
-			//System.out.println("First name - "+cust.getCustFirstName());
-			//System.out.println("Last name - "+cust.getCustLastName());
-			//System.out.println("Address - "+cust.getCustAddress());
-			//System.out.println("Cisty - "+cust.getCustCity());
-			//System.out.println("Province - "+cust.getCustProv());
-			//System.out.println("Postal - "+cust.getCustPostal());
-			//System.out.println("Coutry - "+cust.getCustCountry());
-			//System.out.println("Home phone - "+cust.getCustHomePhone());
-			//System.out.println("Bus phone - "+cust.getCustBusPhone());
-			//System.out.println("Email - "+cust.getCustEmail());
 			
 			// Create statement and pass parameters 
 	        PreparedStatement st = conn.prepareStatement(query);
@@ -198,5 +192,39 @@ public class CustomerService {
 	    }
 		
 		return rowsUpdated;
+	}
+	
+	// Method returns customers full name
+	public String getCustName(int CustId) {
+		
+		String fullName="Dear User";
+
+		try {
+			Connection conn = DBConnection.getConnection();
+			
+			// Create our parameritized SQL SELECT query.
+			String query = "SELECT `CustFirstName`, `CustLastName` FROM customers WHERE CustomerId = ? ";
+			
+			// Create statement and pass parameters 
+	        PreparedStatement st = conn.prepareStatement(query);
+	        st.setInt(1,CustId);
+	
+	        // execute the query, and get a java resultset
+	        ResultSet rs = st.executeQuery();
+	
+	        // iterate through the java resultset
+	        while (rs.next())
+	        {    		        	
+
+	        	fullName = rs.getString("CustFirstName")+" "+rs.getString("CustLastName");
+
+	        }
+	        st.close();
+        }catch (Exception e) {
+	        System.err.println("Got an exception! ");
+	        System.err.println(e.getMessage());
+	    }
+		
+		return fullName;
 	}
 } // end of the class
