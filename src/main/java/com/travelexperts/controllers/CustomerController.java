@@ -40,8 +40,8 @@ public class CustomerController {
 	}
 	
 	@PostMapping("/insert_customer")
-	public void addCustomer(Customer cust) {
-		custService.insertCustomer(cust);
+	public int addCustomer(Customer cust) {
+		return custService.insertCustomer(cust);
 	}
 	
 	@PutMapping("/update_customer")

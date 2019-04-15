@@ -5,12 +5,9 @@ function displayDesc(id){
 
   //First: Retreive position of active input field
   var thisInput = document.getElementById(id);
-  var pos = thisInput.getBoundingClientRect();
-  var posY = pos.top-50;
-
+  
   //Second: we display hint in certain position
   var activePar = retreivePar(id);
-  document.getElementById(activePar).style.marginTop = `${posY}px`;
   document.getElementById(activePar).style.display = "block";
 }
 
@@ -34,10 +31,10 @@ function retreivePar(id) {
     case "lname":
       activePar = "textForLname";
       break;
-    case "psw":
+    case "username":
       activePar = "textForPwd";
       break;
-    case "cpsw":
+    case "password":
       activePar = "textForCpwd";
       break;
     case "email":

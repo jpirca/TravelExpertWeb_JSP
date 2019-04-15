@@ -1,26 +1,32 @@
 /* For onfocus listeners */
 .onfocuspar{
 	display: none;
-	float: right;
-	background-color: lightgrey;
-	border: 1px solid grey;
-	border-radius: 20px;
-	margin: 50px;
-	padding: 30px;
-	max-width: 20%;
-	margin-right: 3%;
+	padding-left:40px;
+	color: #d44d4a;
+	font-size: 0.75rem;
+	font-style: italic;
 }
-/* End onfocus listeners */
+/* Form header */
+#formHeader{
+	text-align:center;
+	font-weight: bold;
+	color:white; 
+	padding-top:0 !important;
+}
 
+.fa{
+	vertical-align:middle !important;
+}
 
 /* Registration form wrap  */
 .wholegroup{
-	 display: inline-block;
-	 border-radius: 25px;
-	 background-color: #2193b2;
+	 display: block;
+	 border-radius: 15px;
+	 background-color: #6da2f8;
 	 padding: 25px;
-	 width: 60%;
-	 position:absolute;
+	 margin-bottom: 20px;
+	 /*width: 80%;
+	 position:absolute;*/
      top: 20%;
      left: 15%;
 	 box-shadow: 8px 8px 5px #92b6ef;
@@ -30,6 +36,7 @@ span.input-group-addon {
 	background-color: #DCDCDC;
 	color: #1e90ff;
 	font-size: 17px;
+	min-width:40px;
 }
 
 .form-control{
@@ -46,7 +53,7 @@ h3 {
 
 #submitbtn, #resetbtn{
 	width:100%;
-	height: 10%;
+	height: 80%;
 	margin-top: 15px;
 	font-size: 20px;
 	color: #696969;
