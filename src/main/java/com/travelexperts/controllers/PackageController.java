@@ -21,7 +21,7 @@ import com.travelexperts.service.PackageService;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/packages")
+@RequestMapping("/pack")
 public class PackageController {
 	
 	private Logger logger = LoggerFactory.getLogger(CustomerController.class); 

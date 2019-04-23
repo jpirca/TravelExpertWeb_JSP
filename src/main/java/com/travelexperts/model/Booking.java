@@ -14,6 +14,8 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
    int BookingId; //Booking
    Date BookingDate; //Booking
+   Date PackStartDate; // PackFrom
+   Date PackEndDate; // PackTo
    String BookingNo; // Booking
    int TravelerCount; // Booking
    String TripType;	  // Booking
@@ -22,6 +24,7 @@ public class Booking {
    String CustLastName; //Customers
    int PackageId; //Packages
    String PkgName; //Packages
+   String PkgImageArray; // packages
    Double PkgBasePrice; // Packages
    
 	public int getBookingId() {
@@ -35,6 +38,18 @@ public class Booking {
 	}
 	public void setBookingDate(Date bookingDate) {
 		BookingDate = bookingDate;
+	}
+	public Date getPackStartDate() {
+		return PackStartDate;
+	}
+	public void setPackStartDate(Date packStartDate) {
+		PackStartDate = packStartDate;
+	}
+	public Date getPackEndDate() {
+		return PackEndDate;
+	}
+	public void setPackEndDate(Date packEndDate) {
+		PackEndDate = packEndDate;
 	}
 	public String getBookingNo() {
 		return BookingNo;
@@ -83,6 +98,12 @@ public class Booking {
 	}
 	public void setPkgName(String pkgName) {
 		PkgName = pkgName;
+	}
+	public String getPkgImageArray() {
+		return PkgImageArray;
+	}
+	public void setPkgImageArray(String pkgImageArray) {
+		PkgImageArray = pkgImageArray;
 	}
 	public Double getPkgBasePrice() {
 		return PkgBasePrice;

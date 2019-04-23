@@ -11,6 +11,7 @@
 		<link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
 
 		<%@ include file="parts/scripts.jsp" %>
+		
 		<script>
 			$(document).ready(function(){
 			jQuery('#camera_wrap').camera({
@@ -38,23 +39,23 @@
 			});
 		</script>
 </head>
-  <body class="page1" id="top" onload="includeHTML()">
+  <body class="page1" id="top">
 	<%@ include file="parts/header.jsp" %>
 		<div class="slider_wrapper">
 			<div id="camera_wrap" class="">
 				<div data-src="images/slide.jpg">
 					<div class="caption fadeIn">
-						<h2>LONDON</h2>
+						<h2>European Cities Tour</h2>
 						<div class="price">
 							FROM
-							<span>$1000</span>
+							<span>$3000</span>
 						</div>
 						<a href="#">LEARN MORE</a>
 					</div>
 				</div>
 				<div data-src="images/slide1.jpg">
 					<div class="caption fadeIn">
-						<h2>Maldives</h2>
+						<h2>Polynesian Paradise</h2>
 						<div class="price">
 							FROM
 							<span>$2000</span>
@@ -90,9 +91,9 @@
 				</div>
 				<div class="grid_4">
 					<div class="banner">
-						<img src="images/ban_img2.jpg" alt="">
+						<img src="images/page3_img2.jpg" alt="" class="titleimage">
 						<div class="label">
-							<div class="title">GOA</div>
+							<div class="title">KYIV</div>
 							<div class="price">FROM<span>$ 1.500</span></div>
 							<a href="#">LEARN MORE</a>
 						</div>
@@ -110,52 +111,54 @@
 				</div>
 				<div>
 					<button type="button" class="btn btn-primary btn-block">
-						<a id="explAllBtn" href="packages.html">EXPLORE ALL PACKAGES</a>
+						<a id="explAllBtn" href="packages">EXPLORE ALL PACKAGES</a>
 					</button>
 				</div>
 				<div  id="bookingTop" class="clear"></div>
 				<div class="grid_6">
 					<h3>Booking Form</h3>
 					<form id="bookingForm">
-						<div class="fl1">
-							<div class="tmInput">
-								<input name="Name" placeHolder="Name:" type="text" data-constraints='@NotEmpty @Required @AlphaSpecial'>
-							</div>
-							<div class="tmInput">
-								<input name="Country" placeHolder="Country:" type="text" data-constraints="@NotEmpty @Required">
-							</div>
-						</div>
-						<div class="fl1">
-							<div class="tmInput">
-								<input name="Email" placeHolder="Email:" type="text" data-constraints="@NotEmpty @Required @Email">
-							</div>
-							<div class="tmInput mr0">
-								<input name="Hotel" placeHolder="Hotel:" type="text" data-constraints="@NotEmpty @Required">
+						<div class="row">
+							<label class="col-5 my-auto">Package: </label>
+							<div class="col-7">
+								<select class="tmSelect auto w-100" data-class="tmSelect tmSelect2" data-constraints="">
+									<option class="tmInput">Select package...</option>
+								</select>
 							</div>
 						</div>
+
+
 						<div class="clear"></div>
 						<strong>Start date:</strong>
 						<label class="tmDatepicker">
-							<input type="text" name="Check-in" placeHolder='10/05/2014' data-constraints="@NotEmpty @Required @Date">
+							<input type="text" name="Check-in" placeHolder='10/05/2019' data-constraints="@NotEmpty @Required @Date">
 						</label>
 						<div class="clear"></div>
 						<strong>End date:</strong>
 						<label class="tmDatepicker">
-							<input type="text" name="Check-out" placeHolder='20/05/2014' data-constraints="@NotEmpty @Required @Date">
+							<input type="text" name="Check-out" placeHolder='20/05/2019' data-constraints="@NotEmpty @Required @Date">
 						</label>
-						<div class="clear"></div>
-						<div class="tmRadio">
+						<div class="m-3"></div>
+					
 							<p>Trip Type</p>
-							<input name="Comfort" type="radio" id="tmRadio0" data-constraints='@RadioGroupChecked(name="Comfort", groups=[RadioGroup])' checked/>
-							<span>Business</span>
-							<input name="Comfort" type="radio" id="tmRadio1" data-constraints='@RadioGroupChecked(name="Comfort", groups=[RadioGroup])' />
-							<span>Group</span>
-							<input name="Comfort" type="radio" id="tmRadio2" data-constraints='@RadioGroupChecked(name="Comfort", groups=[RadioGroup])' />
-							<span>Leisure</span>
-						</div>
+							<div class="form-check">
+								<div class="form-check-inline">
+							        <input type="radio" class="form-check-input" id="radio1" name="optradio" value="L" checked>
+							         <label class="form-check-label" for="radio1">Leisure</label>
+							    </div>
+							    <div class="form-check-inline">
+							        <input type="radio" class="form-check-input" id="radio2" name="optradio" value="B">
+							        <label class="form-check-label" for="radio2">Business</label>
+							    </div>
+							    <div class="form-check-inline">
+							        <input type="radio" class="form-check-input" id="radio2" name="optradio" value="G">
+							        <label class="form-check-label">Group</label>
+							    </div>
+						    </div>
+				
 						<div class="clear"></div>
 						<div class="row">
-							<div class="col-7 float-right">Number of Travelers</div>
+							<div class="col-7 mr-auto my-auto">Number of Travelers</div>
 							<div class="col-5">
 								<select name="Adults" class="tmSelect auto" data-class="tmSelect tmSelect2" data-constraints="">
 									<option>1</option>

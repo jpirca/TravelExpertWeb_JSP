@@ -71,13 +71,13 @@ public class BookingService {
 		
 		@SuppressWarnings("unchecked")
 		ArrayList<Booking> bookList = new ArrayList();
-		Booking selectedBook = new Booking();
-		
+				
 		try {
 			Connection conn = DBConnection.getConnection();
 			
 			// Create our parameritized SQL SELECT query.
 			String query = "SELECT BookingId,BookingDate, BookingNo, TravelerCount, TripTypeId, CustFirstName, "
+					+ "packages.PkgStartDate, packages.PkgEndDate, packages.PkgImageArray, "
 					+ "CustLastName, packages.PackageId, PkgName, PkgBasePrice, bookings.CustomerId "
 					+ "From bookings "
 					+ "LEFT JOIN customers on bookings.CustomerId = customers.CustomerId "
@@ -93,7 +93,8 @@ public class BookingService {
 	
 	        // iterate through the java resultset
 	        while (rs.next())
-	        {    		        	
+	        {   
+	        	Booking selectedBook = new Booking();
                 selectedBook.setBookingId(rs.getInt("BookingId"));
                 selectedBook.setBookingDate(rs.getDate("BookingDate"));
                 selectedBook.setBookingNo(rs.getString("BookingNo"));
@@ -103,6 +104,9 @@ public class BookingService {
 	        	selectedBook.setCustFirstName(rs.getString("CustFirstName"));
                 selectedBook.setCustLastName(rs.getString("CustLastName"));
                 selectedBook.setPackageId(rs.getInt("PackageId"));
+                selectedBook.setPackStartDate(rs.getDate("PkgStartDate"));
+                selectedBook.setPackEndDate(rs.getDate("PkgEndDate"));
+                selectedBook.setPkgImageArray(rs.getString("PkgImageArray"));
 	            selectedBook.setPkgName(rs.getString("PkgName"));
 	            selectedBook.setPkgBasePrice(rs.getDouble("PkgBasePrice"));
 	            

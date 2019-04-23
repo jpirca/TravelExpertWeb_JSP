@@ -11,19 +11,12 @@
 					<a href="#" class="fab fa-google-plus"></a>
 				</div>
 				<div class="copy">
-					2019 Travel Experts || Website Template Designed by <a href="http://www.JAVAmasters.com/" rel="nofollow">JAVAmaster.com</a>
+					2019 Travel Experts || Website Designed by <a href="http://www.JAVAmasters.com/" rel="nofollow">JAVAmaster.com</a>
 				</div>
 			</div>
 		</div>
 	</footer>
-		<script src="js/header-footer.js"></script>
-		<script>
-			$(function (){
-				$('#bookingForm').bookingForm({
-					ownerEmail: '#'
-				});
-			})
-			$(function() {
-				$('#bookingForm input, #bookingForm textarea').placeholder();
-			});
-		</script>
+	    <script src="js/Login.js"></script>
+		<script src="js/header.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>

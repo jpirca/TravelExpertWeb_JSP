@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfi
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
-@ComponentScan({"com.travelexperts.controllers","com.travelexperts.service"})
+@ComponentScan("com.travelexperts")
 @SpringBootApplication(exclude = {SecurityAutoConfiguration.class} )
 public class TravelExplertsApplication {
 
