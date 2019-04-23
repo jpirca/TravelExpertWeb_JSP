@@ -17,6 +17,8 @@ public class Package {
     String PkgEndDate; 
     String PkgDesc; 
     Double PkgBasePrice;
+    String PkgVertImage; 
+    String PkgImageArray; 
    
 	public int getPackageId() {
 		return PackageId;
@@ -54,4 +56,17 @@ public class Package {
 	public void setPkgBasePrice(Double pkgBasePrice) {
 		PkgBasePrice = pkgBasePrice;
 	}
+	public String getPkgVertImage() {
+		return PkgVertImage;
+	}
+	public void setPkgVertImage(String pkgVertImage) {
+		PkgVertImage = pkgVertImage;
+	}
+	public String getPkgImageArray() {
+		return PkgImageArray;
+	}
+	public void setPkgImageArray(String pkgImageArray) {
+		PkgImageArray = pkgImageArray;
+	}
+	
 }

@@ -1,11 +1,22 @@
 package com.travelexperts.controllers;
 
+import java.util.ArrayList;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.travelexperts.model.Booking;
+import com.travelexperts.model.Customer;
 import com.travelexperts.service.UserService;
 
 @Controller
@@ -26,6 +37,16 @@ public class MainController {
 		return "register";
 	}
 	
+	@RequestMapping("/packages")
+	public String allPackages() {
+		return "packages";
+	}
+	
+	@RequestMapping("/packageDetails")
+	public String onePackage() {
+		return "packageDetails";
+	}
+	
 	//
 	@RequestMapping("/emailconfirmation")
 	public String confirmEmail() {
@@ -35,5 +56,34 @@ public class MainController {
 	@RequestMapping("/success")
 	public String emailConfirmed(String token, Integer id) {
 		return userService.emailConfirmed(token,id);
+	}
+
+	//Test login request
+	@PostMapping("/login")
+	public String loginUser(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		
+		String token = userService.loginUser(request,response);
+		
+		Cookie myCookie = new Cookie("traveltoken", token);
+		//myCookie.setMaxAge(900); // set cookie to 30 min
+	    //myCookie.setDomain("travelexperts.ca");
+	    //myCookie.setPath("/");		
+		response.addCookie(myCookie);		
+		System.out.println("Token is set "+myCookie.getValue());
+	
+		//It is important to use redirect here as redirect reloads page
+		return "redirect:/";
+	}
+	
+	// Controller returns
+	@PostMapping("/personalinfo")
+	public String displayPersonal(Customer cust) {
+		return "PersonalInfo";
+	}
+	
+	// Controller returns
+	@PostMapping("/mybookings")
+	public String displayBookings(ArrayList<Booking> bookings) {
+		return "bookings";
 	}
 }

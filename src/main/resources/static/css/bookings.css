@@ -1,0 +1,144 @@
+
+.container {
+    /*margin-left: 2vw !important;*/
+    margin-right: 2vw !important;
+    width: 96% !important;
+    max-width: 100% !important;
+}
+
+
+.imageContainer {
+    width: 100%;
+    height: auto;
+}
+
+.imageCol {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+/* Package name */
+.pkgName {
+    margin-top:0.5vw !important;
+    padding-top:0 !important;
+}
+
+.travCount {
+    font-size: 1em;
+}
+
+.orderDate {
+    font-size: 0.75em;
+}
+
+.date-from {
+    margin-bottom: 0 !important;
+}
+
+.date-to {
+    margin-top: 0 !important;
+}
+
+/* Div which Displays Price */
+.price {
+    font-size: 1.75vw;
+    color: red;
+    text-align: center;
+    margin-top: 1vw;
+    width: 100%
+}
+
+/* Div which Displays Price */
+.per-person {
+    font-size: 1vw;
+    text-align: center;
+    width: 100%;
+}
+
+/*Font Awesome icons*/
+.foicon {
+    color:gray;
+    font-size: 2.25vw;
+}
+
+/* Price side Bar in Booking Card */
+.price-container {
+    margin: 0 !important;
+    padding: 0 !important;
+    justify-content: space-around;
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+
+.priceSide {
+    margin-top: 0.25vw;
+    margin-bottom: 0.25vw;
+    padding-top: 1em;
+    border-left: 1px solid #A9A9A9;
+}
+
+.change-button-row, .price-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+/* ROW where update and delete buttons are*/
+.change-button-row {
+   padding-left: 0.5vw;
+   width:100%;
+}
+
+/* Individual margins for change buttons */
+#btnDelete {
+    padding: 0;
+    margin-right: 1vw;
+    width: 100%;
+}
+#btnUpdate {
+    padding: 0;
+    margin-left:1vw;
+    width:100%;
+}
+
+/* Right hand side column  */
+.total-price {
+    margin-top: 4vw!important;
+    padding: 1vw !important;
+    border: 1px solid #A9A9A9;
+    border-radius: 10px;
+}
+
+/* place orderbutton */
+.place-order {
+    width:100%;
+}
+
+/* two divs inside right-hand side Price*/
+.order-summary {
+    border-bottom: 1px solid #A9A9A9;
+}
+
+/* price bar lines */
+.price-row {
+    margin-top: 0.5vw;
+    margin-bottom: 0.5vw;
+    font-size: 1vw;
+}
+
+.order-total {
+    font-weight: 700;
+    font-size: 1.4vw;
+    color: #800000;
+}
+
+/***********************************************/
+/* HIDDEN DIV FOR DELETE QUESTION */
+/***********************************************/
+.sorryMessage {
+    font-size: 5vw;
+    text-align: center;
+    color: #989898;
+}

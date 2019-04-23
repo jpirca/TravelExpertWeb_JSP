@@ -9,15 +9,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.mail.MessagingException;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.travelexperts.model.User;
+import com.travelexperts.security.JwtGen;
 import com.travelexperts.service.EmailService;
 
 @Service
 public class UserService {
+	
+	@Autowired
+	private JwtGen generator;
 	
 	@Autowired
 	private EmailService eService;
@@ -85,6 +92,7 @@ public class UserService {
 		return user.getEmail();
 	}
 	
+	// Email confirmation
 	public String emailConfirmed(String token, Integer id) {
 		
 		// Based on id query DB and extract token 
@@ -150,6 +158,76 @@ public class UserService {
 		}
 	}
 	
+	// Method check username and password
+	public String loginUser(HttpServletRequest request, HttpServletResponse response) {
+		
+		// Get variables passed as http request
+		String username = (String)request.getParameter("username");
+		String password = (String)request.getParameter("password");
+
+		
+		// Get password from Data Base
+		String dbPassword="";
+		String token="";
+		String result;
+		User selectedUser = new User();	
+		
+		try {
+			Connection conn = DBConnection.getConnection();
+			
+			// Create our parameritized SQL SELECT query.
+			String query = "SELECT * FROM user WHERE username = ? ";
+			
+			// Create statement and pass parameters 
+	        PreparedStatement st = conn.prepareStatement(query);
+	        st.setString(1,username);
+	
+	        // execute the query, and get a java resultset
+	        ResultSet rs = st.executeQuery();
+	
+	        // iterate through the java resultset
+	        while (rs.next())
+	        {   
+	        	// Save password separetaly
+	        	dbPassword = rs.getString("password");
+	        	// Save all information about selected user
+	        	selectedUser.setUserId(rs.getInt("userId"));
+	        	selectedUser.setUsername(username);
+	        	selectedUser.setPassword(password);
+	        	selectedUser.setEmailComfirmed(rs.getBoolean("emailConfirmed"));
+	        	selectedUser.setCustomerId(rs.getInt("customerId"));
+
+	        }
+	        st.close();
+        }catch (Exception e) {
+	        System.err.println("Got an exception! ");
+	        System.err.println(e.getMessage());
+	    }
+		
+		// Check if email was confirmed
+		if(!selectedUser.getEmailComfirmed()) {
+			//++ create JSON response which says that email is not confirmed 
+			result = "Activate email";
+			
+		} else {	
+			// Check obtained password against provided
+			if(dbPassword.equals(password)) {
+			
+				TokenService tokenService = new TokenService(generator);			
+				token = tokenService.generate(selectedUser);
+				
+				result = token;
+				
+			}else {
+				
+				//++ Generate JSON which says that password doesnt match
+				System.out.println("Passwords are differrent");
+				result = "Login or password is wrong";
+			}		
+		}
+		
+		return result;
+	}
 	
 	// Method is used to create token
 	private String shuffle(String input){

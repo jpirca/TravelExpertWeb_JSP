@@ -24,7 +24,7 @@ public class PackageService {
 			Connection conn = DBConnection.getConnection();
 			
 			String query = "SELECT `PackageId`, `PkgName`, `PkgStartDate`, `PkgEndDate`, `PkgDesc`, "
-					+ "`PkgBasePrice` FROM `packages`";		
+					+ "`PkgBasePrice`, `PkgVertImage`, `PkgImageArray` FROM `packages`";		
 	        Statement st = conn.createStatement();
 	        // execute the query, and get a java resultset
 	        ResultSet rs = st.executeQuery(query);
@@ -38,6 +38,8 @@ public class PackageService {
                 pack.setPkgEndDate(rs.getString("PkgEndDate"));
 	        	pack.setPkgDesc(rs.getString("PkgDesc"));
                 pack.setPkgBasePrice(rs.getDouble("PkgBasePrice"));
+                pack.setPkgVertImage(rs.getString("PkgVertImage"));
+                pack.setPkgImageArray(rs.getString("PkgImageArray"));
 	
 	            // add created instance to the list
 	            packageList.add(pack);
@@ -101,7 +103,7 @@ public class PackageService {
 			
 			// Create our parameritized SQL SELECT query.
 			String query = "SELECT `PackageId`, `PkgName`, `PkgStartDate`, `PkgEndDate`, `PkgDesc`, "
-					+ "`PkgBasePrice` FROM `packages` "
+					+ "`PkgBasePrice`, `PkgVertImage`, `PkgImageArray` FROM `packages` "
 					+ "WHERE PackageId = ?";
 						
 			// Create statement and pass parameters 
@@ -117,6 +119,8 @@ public class PackageService {
                 selectedPack.setPkgEndDate(rs.getString("PkgEndDate"));
                 selectedPack.setPkgDesc(rs.getString("PkgDesc"));
                 selectedPack.setPkgBasePrice(rs.getDouble("PkgBasePrice"));
+                selectedPack.setPkgVertImage(rs.getString("PkgVertImage"));
+                selectedPack.setPkgImageArray(rs.getString("PkgImageArray"));
               }
 	        st.close();
         }catch (Exception e) {
