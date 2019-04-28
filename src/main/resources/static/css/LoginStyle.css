@@ -1,9 +1,14 @@
+/*****************************************************
+Dima Bognen, Jonathan Pirca, Abel Rojas and Manish Sudani
+The file controls styles of Login pop up window  
+/*****************************************************/
+
 /*Styles for Modal box*/
 /* The Modal (background) */
 #loginModal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    z-index: 2000; /* Sit on top */
     padding-top: 100px; /* Location of the box */
     left: 0;
     top: 0;

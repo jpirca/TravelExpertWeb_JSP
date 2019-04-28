@@ -1,3 +1,8 @@
+//********************************************//
+// Dima Bognen, Jonathan Pirca, Abel Rojas, Manish Sudani
+// Service sendsconfirmation email 
+//********************************************//
+
 package com.travelexperts.service;
 
 import java.io.UnsupportedEncodingException;
@@ -35,8 +40,8 @@ public class EmailService {
 		
 		//Build the email message 
 		String htmlMsg = "<h3>Hello "+ name +"</h3></br>"+
-				"<p>We are glad to have to on board</p></br></br>"+
-				"<p>In order to finish registaration and access your accoun, plase use the link below</p></br></br>"+
+				"<p>We are glad to have you on board</p></br></br>"+
+				"<p>In order to finish registaration and access your account, plase use the link below</p></br></br>"+
 				
 				"<a href=\"http://localhost:8080/success?token="+user.getToken()+"&id="+user.getUserId()+"\">"+
 				"http://localhost:8080/success?token=" +user.getToken()+"&id="+user.getUserId()+		

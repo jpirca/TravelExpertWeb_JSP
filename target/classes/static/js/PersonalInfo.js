@@ -1,3 +1,8 @@
+/*****************************************************
+Dima Bognen, Jonathan Pirca, Abel Rojas and Manish Sudani
+The provides additional functionality for My Info page
+/*****************************************************/
+
 // Function which PUT informaition into Database
 function updateCustomer(){
   if(validation()){

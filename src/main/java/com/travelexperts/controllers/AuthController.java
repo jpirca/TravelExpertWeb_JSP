@@ -1,3 +1,8 @@
+//********************************************//
+// Dima Bognen, Jonathan Pirca, Abel Rojas, Manish Sudani
+// Controls access to sensitive informaiton
+//********************************************//
+
 package com.travelexperts.controllers;
 
 import java.util.ArrayList;
@@ -44,20 +49,20 @@ public class AuthController {
 	}
 	
 	// Controller returns list of bookings
-		@RequestMapping("/bookings")
-		@GetMapping(produces=MediaType.APPLICATION_JSON_VALUE) // Important to get response
-		public ArrayList<Booking> obtainBookings(Authentication authentication) {
-			
-			// Get a customer id
-			// Get token
-			UserDetail details = (UserDetail) authentication.getPrincipal();
-			String token = details.getToken();
-			JwtVal qwerty = new JwtVal();
-			User currentUser = qwerty.validate(token);	
-			
-			ArrayList<Booking> book = bService.getBooking(currentUser.getCustomerId());
-			
-			return book;
-		}
-	
-}
+	@RequestMapping("/bookings")
+	@GetMapping(produces=MediaType.APPLICATION_JSON_VALUE) // Important to get response
+	public ArrayList<Booking> obtainBookings(Authentication authentication) {
+		
+		// Get a customer id
+		// Get token
+		UserDetail details = (UserDetail) authentication.getPrincipal();
+		String token = details.getToken();
+		JwtVal qwerty = new JwtVal();
+		User currentUser = qwerty.validate(token);	
+		
+		ArrayList<Booking> book = bService.getBooking(currentUser.getCustomerId());
+		
+		return book;
+	}
+		
+} // end of the class

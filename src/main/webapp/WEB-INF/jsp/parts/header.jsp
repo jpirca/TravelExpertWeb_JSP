@@ -1,3 +1,8 @@
+<!-- ********************************************************************** -->
+<!-- ***    Dima Bognen, Jonathan Pirca, Abel Rojas, Manish Sudani    *** -->
+<!-- ***    The file included in other JSP pages   *** -->
+<!-- ********************************************************************** -->
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -10,7 +15,7 @@
         <div id="loginModal" class="loginModal">
         <!-- Modal content -->
         <div class="login-modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
+            <span class="close" onclick="closeLoginModal();">&times;</span>
             <div id="loginh" class="text-center mb-4">Please, Sign In</div>
             <form action="login" method="post">
                 <div class="row mb-2 mr-1">
@@ -40,7 +45,7 @@
 				</div>
 			</div>
 		</div>
-		<nav class="navbar navbar-expand-md">
+		<nav class="navbar navbar-expand-md main-navbar">
 			<div class="container">
 				<!--   				
 				<div>Here is Cookie - ${cookie['token'].value}</div>
@@ -52,13 +57,13 @@
 				<div class="collapse navbar-collapse" id="navbarsExampleDefault">
 					<ul class="navbar-nav ml-auto">
 						<li class="nav-item active">
-							<a class="nav-link" href="/#packagesTop">Destinations</a>
+							<a class="nav-link menu-button" href="/#packagesTop">Destinations</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="/#bookingTop">Book Now</a>
+							<a class="nav-link menu-button" href="/#bookingTop">Book Now</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#">About</a>
+							<a class="nav-link menu-button" href="#">About</a>
 						</li>
 						<%
 						Cookie[] cookies = request.getCookies();
@@ -75,11 +80,11 @@
 						
 					if(token != null) { %>						
 				          <li class="nav-item dropdown">
-				            <a class="nav-link dropdown-toggle" href="http://example.com" id="userdropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Your Name</a>
+				            <a class="nav-link dropdown-toggle menu-button" href="http://example.com" id="userdropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Your Name</a>
 				            <div class="dropdown-menu" aria-labelledby="userdropdown">
 				              <a class="dropdown-item" id="custbooking" href="">My Bookings</a>
 				              <a class="dropdown-item" id="custinfo" href="">My Info</a>
-				              <a class="dropdown-item" href="#">Logout</a>
+				              <a class="dropdown-item" href="killtoken">Logout</a>
 				            </div>
 				          </li>
 				           <script type="text/javascript">getUserName();</script>

@@ -1,3 +1,8 @@
+//********************************************//
+// Dima Bognen, Jonathan Pirca, Abel Rojas, Manish Sudani
+// Service which interacts with DB and extracts package info
+//********************************************//
+
 package com.travelexperts.service;
 
 import java.sql.Connection;

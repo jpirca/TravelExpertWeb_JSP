@@ -1,3 +1,9 @@
+<!-- ********************************************************************** -->
+<!-- ***    Dima Bognen, Jonathan Pirca, Abel Rojas, Manish Sudani    *** -->
+<!-- ***    The file displays user's personal info *** -->
+<!-- ********************************************************************** -->
+
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>

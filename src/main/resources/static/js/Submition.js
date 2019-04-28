@@ -1,6 +1,7 @@
-
-// Main function of the file. Executes on Submit buttom click
-
+/*****************************************************
+Dima Bognen, Jonathan Pirca, Abel Rojas and Manish Sudani
+The file prvides additional front end functionality for register page page  
+/*****************************************************/
 function submition(btnname, myForm) {
    
    var validFields = formValidation();
@@ -11,13 +12,10 @@ function submition(btnname, myForm) {
         $.ajax({
         url: "http://localhost:8080/customers/insert_customer",
         type: "POST",
+        async: false,
         data: $("#regForm").serialize(),
         success: function(data){
           // If insert is successful redirect to another function which will insert info 
-          // into Users
-          // in this case 'data' is returned value of just inserted CustomerId
-          //alert(data);
-          alert('Success! Inserted to Cusrmers');
           userInfo(data);
         },
         error: function(){
@@ -44,7 +42,7 @@ function userInfo(custId){
         success: function(data){
           // If insert is successful redirect to dead end page which asks to confirm email 
           // in this case 'data' is returned string ProvidedEmail
-          alert('Success! Inserted to Users. Email is - '+data);
+          alert('Success! Email was sent. Email is - '+data);
           location.href ='http://localhost:8080/emailconfirmation?email='+data;
         },
         error: function(){

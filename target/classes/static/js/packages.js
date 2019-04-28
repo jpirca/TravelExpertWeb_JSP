@@ -1,3 +1,8 @@
+/*****************************************************
+Dima Bognen, Jonathan Pirca, Abel Rojas and Manish Sudani
+The file fills out the information about the package upon Learn More Click 
+/*****************************************************/
+
 function getAllPackages(){
 	 $.ajax({
          url: 'http://localhost:8080/pack/all',

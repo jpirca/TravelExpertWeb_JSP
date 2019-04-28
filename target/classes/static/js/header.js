@@ -1,3 +1,9 @@
+/*****************************************************
+Dima Bognen, Jonathan Pirca, Abel Rojas and Manish Sudani
+The file prvides additional front end functionality for header which appears on all pages  
+/*****************************************************/
+
+
 var cookieToken = getCook('traveltoken');
 
 // Function sends request and gets Customer's Info

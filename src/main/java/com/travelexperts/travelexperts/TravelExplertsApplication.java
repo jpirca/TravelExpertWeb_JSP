@@ -1,3 +1,8 @@
+//********************************************//
+// Dima Bognen, Jonathan Pirca, Abel Rojas, Manish Sudani
+// Main application file
+//********************************************//
+
 package com.travelexperts.travelexperts;
 
 import org.springframework.boot.SpringApplication;
