@@ -1,3 +1,8 @@
+//********************************************//
+// Dima Bognen, Jonathan Pirca, Abel Rojas, Manish Sudani
+// Service which interacts with DB booking info  
+//********************************************//
+
 package com.travelexperts.service;
 
 import java.sql.Connection;
@@ -5,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Random;
 
 import org.springframework.stereotype.Service;
@@ -122,7 +128,7 @@ public class BookingService {
 		return bookList;
 	}
 	
-	// insert new customer
+	// insert a booking
 	public int insertBooking(Booking book) {
 
 		int rowsInserted = 0;
@@ -140,12 +146,14 @@ public class BookingService {
 			Random random = new Random();
 			String bookingDigits = String.format("%04d", random.nextInt(10000));		
 			bookingNo = bookingNo.concat(bookingDigits);
+			java.sql.Date bookDate = new java.sql.Date(System.currentTimeMillis());
+			
 			
 			// Create statement and pass parameters 
 	        PreparedStatement st = conn.prepareStatement(query);
-            st.setDate(1, book.getBookingDate());
+            st.setDate(1, bookDate);
             st.setString(2, bookingNo);
-	        st.setInt(3,book.getTravelerCount());
+	        st.setInt(3,1);
 	        st.setInt(4,book.getCustomerId());
 	        st.setString(5, "L");
 	        st.setInt(6,book.getPackageId());
@@ -164,7 +172,7 @@ public class BookingService {
 		return rowsInserted;
 	}
 
-	// insert new customer
+	// update a booking
 	public int updateBooking(Booking book) {
 		
 		int rowsUpdated = 0;
@@ -201,5 +209,35 @@ public class BookingService {
 	    }
 		
 		return rowsUpdated;
+	}
+	
+public int deleteBooking(int bookingId) {
+		
+		int rowsDeleted = 0;
+
+		try {
+			Connection conn = DBConnection.getConnection();
+			
+			// Create our parameritized SQL DELETE query.
+			String query = "DELETE FROM bookings " + 
+					"WHERE `BookingId`=? ";
+					
+			// Create statement and pass parameters 
+	        PreparedStatement st = conn.prepareStatement(query);     
+	        
+	        st.setInt(1, bookingId);
+	       	
+	        // execute the query, and get a java resultset
+	        //ResultSet rs = st.executeQuery();
+	        rowsDeleted = st.executeUpdate();
+	        System.out.println("Rows inserted - "+rowsDeleted);
+
+	        st.close();
+        }catch (Exception e) {
+	        System.err.println("Got an exception! ");
+	        System.err.println(e.getMessage());
+	    }
+		
+		return rowsDeleted;
 	}
 } // end of the class

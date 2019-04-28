@@ -1,3 +1,8 @@
+//********************************************//
+// Dima Bognen, Jonathan Pirca, Abel Rojas, Manish Sudani
+// Service which interacts with DB Customer info  
+//********************************************//
+
 package com.travelexperts.service;
 
 

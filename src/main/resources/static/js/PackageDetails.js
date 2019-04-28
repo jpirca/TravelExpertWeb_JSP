@@ -1,3 +1,51 @@
+/*****************************************************
+Dima Bognen, Jonathan Pirca, Abel Rojas and Manish Sudani
+The file prvides additional front end functionality for specific package page  
+/*****************************************************/
+
+//***************************************************************
+// Function which checks if cookie exists
+var packModal = document.getElementById('packModal');
+var cookie = getCook("traveltoken");
+
+function cookieIsSet(){
+	
+	if(cookie==null || cookie==""){
+		packModal.style.display = "block";
+		return false;
+	}else{
+	    $.ajax({
+	        type     : "POST",
+	        url      : 'http://localhost:8080/bookings/addbooking',
+	        headers  : {'Authorisation': cookie},
+	        async    : false,
+	        data     : $('#addpackform').serialize(),
+	        success  : function(data) {
+	            //alert("Made it!");
+	            document.getElementById('custbooking').click();
+	        },
+	        error	: function(){
+	        	alert("Didn't make it to the server");
+	        }
+	    });
+	}
+}
+
+//***************************************************************//
+
+// When the user clicks on <span> (x), close the modal
+function closeModal() {
+  packModal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == packModal) {
+    packModal.style.display = "none";
+  }
+}
+
+//**************************************************************//
 
 // AJAX function which selects information about 
 function packageDetail(packId){
@@ -176,4 +224,13 @@ function getImages(packId){
       });
 	 
 	 return imageArray;
+}
+
+//Function get cookie value based on its name
+function getCook(cookiename) 
+{
+	// Get name followed by anything except a semicolon
+	var cookiestring=RegExp(""+cookiename+"[^;]+").exec(document.cookie);
+	// Return everything after the equal sign, or an empty string if the cookie name not found
+	return decodeURIComponent(!!cookiestring ? cookiestring.toString().replace(/^[^=]+./,"") : "");
 }

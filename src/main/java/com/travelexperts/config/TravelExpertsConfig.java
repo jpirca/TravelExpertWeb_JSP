@@ -1,3 +1,8 @@
+//********************************************//
+// Dima Bognen, Jonathan Pirca, Abel Rojas, Manish Sudani
+// Main configuration file
+//********************************************//
+
 package com.travelexperts.config;
 
 import java.util.Collections;

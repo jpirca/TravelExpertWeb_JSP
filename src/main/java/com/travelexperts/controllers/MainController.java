@@ -1,3 +1,8 @@
+//********************************************//
+// Dima Bognen, Jonathan Pirca, Abel Rojas, Manish Sudani
+// Controls access and redirect to jsp page
+//********************************************//
+
 package com.travelexperts.controllers;
 
 import java.util.ArrayList;
@@ -47,7 +52,6 @@ public class MainController {
 		return "packageDetails";
 	}
 	
-	//
 	@RequestMapping("/emailconfirmation")
 	public String confirmEmail() {
 		return "emailconfirmation";
@@ -58,24 +62,41 @@ public class MainController {
 		return userService.emailConfirmed(token,id);
 	}
 
-	//Test login request
 	@PostMapping("/login")
 	public String loginUser(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		
 		String token = userService.loginUser(request,response);
 		
-		Cookie myCookie = new Cookie("traveltoken", token);
-		//myCookie.setMaxAge(900); // set cookie to 30 min
+		if(token.equals("noemail")) {
+			return "noconfirmation";
+		} else if(token.equals("wrong")) {
+			return "wrongpass";
+		}else {
+			Cookie myCookie = new Cookie("traveltoken", token);
+			//myCookie.setMaxAge(900); // set cookie to 30 min
+		    //myCookie.setDomain("travelexperts.ca");
+		    //myCookie.setPath("/");		
+			response.addCookie(myCookie);		
+			System.out.println("Token is set "+myCookie.getValue());
+		
+			//It is important to use redirect here as redirect reloads page
+			return "redirect:/";
+		}
+	}
+	
+	@RequestMapping("/killtoken")
+	public String killToken(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		
+		Cookie myCookie = new Cookie("traveltoken", null);
+		myCookie.setMaxAge(0); // set cookie to 30 min
 	    //myCookie.setDomain("travelexperts.ca");
 	    //myCookie.setPath("/");		
-		response.addCookie(myCookie);		
-		System.out.println("Token is set "+myCookie.getValue());
-	
-		//It is important to use redirect here as redirect reloads page
+		response.addCookie(myCookie);	
 		return "redirect:/";
 	}
 	
-	// Controller returns
+	
+	// Controller returns 
 	@PostMapping("/personalinfo")
 	public String displayPersonal(Customer cust) {
 		return "PersonalInfo";

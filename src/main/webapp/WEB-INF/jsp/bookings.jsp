@@ -1,3 +1,8 @@
+<!-- ********************************************************************** -->
+<!-- ***    Dima Bognen, Jonathan Pirca, Abel Rojas, Manish Sudani    *** -->
+<!-- ***    The file displays personilised booking info  *** -->
+<!-- ********************************************************************** -->
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -10,6 +15,7 @@
    		
 	    <%@ include file="parts/scripts.jsp" %>
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	    <script src="js/booking.js"></script>
 	    
 	    <%@ page import="java.util.ArrayList" %>
 	    <%@ page import="java.sql.Date" %>
@@ -34,6 +40,8 @@
 	
 	// Declare array list of objects of booking class
 	ArrayList<Booking> bookings = new ArrayList<Booking>();
+	
+	// Get obtained information and store it a list of obects
 	if (pkgNames!=null){
 		for(int i=0;i<pkgNames.length;i++){
 			
@@ -66,15 +74,31 @@
 </head>
 <body>
 	<%@ include file="parts/header.jsp" %>
-
+		  <!-- ************************************************************************ -->
+          <!-- *** Modal popup *** -->
+          <div id="bookingModalBox" class="bookingmodal">
+			  <!-- Modal content -->
+			  <div class="bookingmodal-content">
+			    <span class="close" onclick="closeBookModal()">&times;</span>
+			    <div id="bookpopupmessage" class="mb-4"></div>
+			    <div class="row">
+			    	<div class="col-6">
+			    		<button id="confirmbtn" type="button" class="btn btn-secondary modalbtn">Confirm</button>
+			    	</div>
+			    	<div class="col-6">
+			    		<button type="button" class="btn btn-secondary modalbtn" onclick="closeBookModal()">Decline</button>
+			    	</div>
+			    </div>
+			  </div>
+			</div>
+          <!-- ************************************************************************ -->
           <div class="container main-container">
             <div class="row">
-              <div class="col-1"></div>
-              <div class="col-8">
+              <div class="col-9">
                 <h2 class="mb-4">Booking Details: </h2>
               
               <%for ( Booking book : bookings){ %>
-                 <div class="container bg-light my-3 ">
+                 <div class="container bg-light my-3 book-container">
                     <div class="row">
                       <div class="col-4 imageCol">
                         <div><img class="imageContainer" src="<%=book.getPkgImageArray() %>" /></div>
@@ -124,7 +148,8 @@
                           <div class="row change-button-row">                           
                             <div class="col-6 text-center">
                               <button type="button" class="btn">
-                                  <i class='fas fa-trash-alt foicon' title='Delete'></i></button>
+                                  <i class='fas fa-trash-alt foicon' title='Delete' 
+                                  onclick='displayDeleteConfirmation("<%=book.getPkgName() %>","<%=book.getBookingId() %>")'></i></button>
                                 </div>
                              <div class="col-6 text-center">
                                 <button type="button" class="btn">
@@ -199,6 +224,7 @@
            </div>
          </div>
  	   </div>
+ 	<script src="js/booking.js"></script>
     <%@ include file="parts/footer.jsp" %>
 </body>
 </html>

@@ -1,3 +1,9 @@
+/*****************************************************
+Dima Bognen, Jonathan Pirca, Abel Rojas and Manish Sudani
+The file controls styles in different parts ofthe application
+/*****************************************************/
+
+
 @import "reset.css";
 @import "skeleton.css";
 @import "font-awesome.css";
@@ -968,6 +974,14 @@ footer{
 	width:17px !important;
 	heihgt:17px !important;
 }
+/**********************************************/
+/*** THREE MENU BUTTONS  ***/
+.menu-button:hover{
+	background-color: #ffffff !important;
+	color: #007bff !important;
+	text-decoration: underline !important;
+	cursor: pointer !important;
+}
 
 /**********************************************/
 /*** LEATN MORE ON PACKAGES PAGE ***/
@@ -987,4 +1001,8 @@ footer{
 .learnmorebutton:hover{
 	background-color: #062456;
     border-color: #062456;
+}
+
+.main-navbar{
+	padding: 0 !important;
 }

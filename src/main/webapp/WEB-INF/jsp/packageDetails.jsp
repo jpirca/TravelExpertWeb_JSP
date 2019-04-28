@@ -1,3 +1,8 @@
+<!-- ********************************************************************** -->
+<!-- ***    Dima Bognen, Jonathan Pirca, Abel Rojas, Manish Sudani    *** -->
+<!-- ***    The file displays all avaliable packages  *** -->
+<!-- ********************************************************************** -->
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -9,6 +14,7 @@
 	    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 	    <link href="https://fonts.googleapis.com/css?family=Nunito:400,700i" rel="stylesheet">
 	    <link href="https://fonts.googleapis.com/css?family=Kanit" rel="stylesheet">
+	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	    	    
 	    <%@ include file="parts/scripts.jsp" %>
 	    <script src="js/PackageDetails.js"></script>
@@ -27,6 +33,17 @@
 	%>
 <body onload="packageDetail(<%=packId %>);">
 	<%@ include file="parts/header.jsp" %>
+	<!-- ************************************************************** -->
+	<!-- **POPUP WINDOW** -->
+	<!-- ************************************************************** -->
+	<div id="packModal" class="packagemodal">
+	  <!-- Modal content -->
+	  <div class="packagemodal-content">
+	    <span class="close" onclick="closeModal()">&times;</span>
+	    <p>Please, register to book a package with us or sign in if you are already registered</p>
+	  </div>
+	</div>
+	<!-- ************************************************************** -->
 	<div id="idenifier" style="display:none"><%=packId %></div>
 	<div class="container main-container">
 		<div class="row">
@@ -62,12 +79,12 @@
 				<section class="site-section py-lg">
 			      <div class="container">
 			        <div class="row blog-entries element-animate">
+			          <form id="addpackform" action="" method="post" onsubmit="return cookieIsSet()">
 			          <div class="main-content">
 			            <p id="PkgName" class="mb-4">Package Name</p>
 			            <div id="PkgPrice">Price</div>
 			            <!-- Two hidden inputs -->
-			            <input type="hidden" id="PkgId" value="" />
-			            <input type="hidden" id="PkgImageArray" value="" />
+			            <input name="packageId" type="hidden" id="PkgId" value="" />
 			            <!-- ******************* -->
 						<div class="post-content-body">
 			              <div class="row">
@@ -93,7 +110,8 @@
 			            </div>
 						</div>
 						
-						<button type="button" class="btn btn-info">Add to Cart</button>
+						<input type="submit" class="btn btn-info" value="Add to Cart"/>
+			          </form>
 			          </div>
 			      </div>
 		    </section>

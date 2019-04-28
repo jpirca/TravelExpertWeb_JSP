@@ -1,3 +1,8 @@
+//********************************************//
+// Dima Bognen, Jonathan Pirca, Abel Rojas, Manish Sudani
+// Service which interacts with DB and extracts user info
+//********************************************//
+
 package com.travelexperts.service;
 
 import java.io.UnsupportedEncodingException;
@@ -7,6 +12,9 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 import javax.mail.MessagingException;
 import javax.servlet.http.Cookie;
@@ -22,7 +30,7 @@ import com.travelexperts.service.EmailService;
 
 @Service
 public class UserService {
-	
+
 	@Autowired
 	private JwtGen generator;
 	
@@ -32,11 +40,15 @@ public class UserService {
 	// insert new customer
 	public String insertUser(User user) {
 		// method variables
+		String salt = "GloryToUkraine";
 		int rowsInserted = 0;
 		Integer userId=0;
 		
 		String token ="QWERTYUIOPASDFGHJKLZXCVBNMqwertyuioplkjhgfdsazxcvbnm1234567890";
 		String shuffledToken = shuffle(token);
+		
+		// Before insert user information password has to be hashed
+		String hashedPassword = hashPassword(user.getPassword(),salt);
 		
 		try {
 			Connection conn = DBConnection.getConnection();
@@ -49,7 +61,8 @@ public class UserService {
 			// Create statement and pass parameters 
 	        PreparedStatement st = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 	        st.setString(1,user.getUsername());
-	        st.setString(2,user.getPassword());
+	        st.setString(2,hashedPassword);
+	        //st.setString(2,user.getPassword());
 	        st.setString(3,user.getEmail());
 	        st.setBoolean(4,false);
 	        st.setString(5,shuffledToken);
@@ -161,9 +174,10 @@ public class UserService {
 	// Method check username and password
 	public String loginUser(HttpServletRequest request, HttpServletResponse response) {
 		
+		String salt = "GloryToUkraine";
 		// Get variables passed as http request
 		String username = (String)request.getParameter("username");
-		String password = (String)request.getParameter("password");
+		String password = hashPassword(String.valueOf(request.getParameter("password")),salt);
 
 		
 		// Get password from Data Base
@@ -207,7 +221,7 @@ public class UserService {
 		// Check if email was confirmed
 		if(!selectedUser.getEmailComfirmed()) {
 			//++ create JSON response which says that email is not confirmed 
-			result = "Activate email";
+			result = "noemail";
 			
 		} else {	
 			// Check obtained password against provided
@@ -222,7 +236,7 @@ public class UserService {
 				
 				//++ Generate JSON which says that password doesnt match
 				System.out.println("Passwords are differrent");
-				result = "Login or password is wrong";
+				result = "wrong";
 			}		
 		}
 		
@@ -243,5 +257,24 @@ public class UserService {
         }
         return output.toString();
     }
+	
+	// Private method used to hash password with SHA-512 algorithm
+	private String hashPassword(String passwordToHash, String salt){
+		String generatedPassword = null;
+		    try {
+			         MessageDigest md = MessageDigest.getInstance("SHA-512");
+			         md.update(salt.getBytes(StandardCharsets.UTF_8));
+			         byte[] bytes = md.digest(passwordToHash.getBytes(StandardCharsets.UTF_8));
+			         StringBuilder sb = new StringBuilder();
+			         for(int i=0; i< bytes.length ;i++){
+			            sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+			         }
+			         generatedPassword = sb.toString();
+		        } 
+		       catch (NoSuchAlgorithmException e){
+		    	   		e.printStackTrace();
+		       }
+		    return generatedPassword;
+		}
 	
 } // end of the class
